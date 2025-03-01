@@ -6,7 +6,7 @@ box::use(
   bslib[page_fillable,layout_columns,layout_sidebar,sidebar,font_google],
   plotly[...],
   ggplot2[...],
-  stringr[str_split],
+  #stringr[str_split],
   RColorBrewer[brewer.pal],
   grDevices[colorRampPalette],
   reshape2[acast,melt],
@@ -19,7 +19,7 @@ box::use(
                   ,make_PrimaryButton_fluent,make_dropdown_fluent,make_numeric_input],
   app/view/Plotcontrol,
   app/view/empty_plot[empty_plot],
-  app/logic/sort_points[sort_points],
+  #app/logic/sort_points[sort_points],
   app/logic/variablesManager[PlotControlVariables,PlotResultVariables],
 )
 
@@ -27,35 +27,37 @@ box::use(
 ui <- function(id,PlotGraphType="plotly") {
   ns <- NS(id)
   if (PlotGraphType == "plotly") {plottypeplot <- plotlyOutput(ns("graph"))}
-  if (PlotGraphType == "ggplot") {plottypeplot <- plotOutput(ns("ggplotgraph"))}
-  makeCardwithgear(title = "Noderesult", 
-                   headercontent =     div(class = "d-flex justify-content-start",
-                                           selectizeInput(inputId = ns("ResultInterface"), label = "Interface:",choices = "nothing selected", 
-                                                          #width = "100%",
-                                                          multiple = FALSE#, width = "100%"
-                                                          ,options = list(
-                                                            #create = FALSE,
-                                                            placeholder = "Search Me",
-                                                            #maxItems = '1',
-                                                            #onDropdownOpen = I("function($dropdown) {if (!this.lastQuery.length) {this.close(); this.settings.openOnFocus = false;}}"),
-                                                            onType = I("function (str) {if (str === \"\") {this.close();}}"),
-                                                            deselectBehavior = "previous"
-                                                          )
-                                           )
-                                           ,selectizeInput(inputId = ns("ResultType"), label = "resulttype:",
-                                                           choices = "nothing selected", multiple = FALSE#, width = "100%"
-                                                           ,options = list(
-                                                             #create = FALSE,
-                                                             placeholder = "Search Me",
-                                                             #maxItems = '1',
-                                                             #onDropdownOpen = I("function($dropdown) {if (!this.lastQuery.length) {this.close(); this.settings.openOnFocus = false;}}"),
-                                                             onType = I("function (str) {if (str === \"\") {this.close();}}"),
-                                                             deselectBehavior = "previous"
-                                                           )
-                                           )),
+  #if (PlotGraphType == "ggplot") {plottypeplot <- plotOutput(ns("ggplotgraph"))}
+  
+  makeCardwithgear(title = "Wahlauszählungs-Zeitverlaufsdiagramm", 
+                   headercontent =     div(class = "d-flex justify-content-start"
+                                           # ,selectizeInput(inputId = ns("ResultInterface"), label = "Interface:",choices = "nothing selected", 
+                                           #                #width = "100%",
+                                           #                multiple = FALSE#, width = "100%"
+                                           #                ,options = list(
+                                           #                  #create = FALSE,
+                                           #                  placeholder = "Search Me",
+                                           #                  #maxItems = '1',
+                                           #                  #onDropdownOpen = I("function($dropdown) {if (!this.lastQuery.length) {this.close(); this.settings.openOnFocus = false;}}"),
+                                           #                  onType = I("function (str) {if (str === \"\") {this.close();}}"),
+                                           #                  deselectBehavior = "previous"
+                                           #                )
+                                           # )
+                                           # ,selectizeInput(inputId = ns("ResultType"), label = "resulttype:",
+                                           #                 choices = "nothing selected", multiple = FALSE#, width = "100%"
+                                           #                 ,options = list(
+                                           #                   #create = FALSE,
+                                           #                   placeholder = "Search Me",
+                                           #                   #maxItems = '1',
+                                           #                   #onDropdownOpen = I("function($dropdown) {if (!this.lastQuery.length) {this.close(); this.settings.openOnFocus = false;}}"),
+                                           #                   onType = I("function (str) {if (str === \"\") {this.close();}}"),
+                                           #                   deselectBehavior = "previous"
+                                           #                 )
+                                           #                 )
+                                           ),
                    content = plottypeplot, 
-                   min_height = NULL, 
-                   gear = Plotcontrol$ui(ns("Nodeplotcontrol"))
+                   min_height = NULL 
+                   #,gear = Plotcontrol$ui(ns("Nodeplotcontrol"))
   )
   
 }
@@ -69,26 +71,26 @@ server <- function(id,ConfigVariables, PlotResultVariables, SimResults, DefaultI
     PlotControlVariables <- PlotControlVariables$new()
     Plotcontrol$server("Nodeplotcontrol",PlotControlVariables)
     
-    observeEvent(SimResults$triggers$plot, {
-      ifl <- c("SMC cell positions",SimResults$InterfaceList)
-      
-      NRTL <- SimResults$NodeResultTypeList
-      ERTL <- c("Delamination state", SimResults$EtableResultTypeList)
-      
-      
-      
-      if (PlotType == "Node") {
-        updateSelectizeInput(inputId = "ResultInterface",choices = ifl ,selected = ifl[DefaultInterface])
-        updateSelectizeInput(inputId = "ResultType",choices = NRTL, selected = "SxminSy")
-      }
-      
-      if (PlotType == "Element") {
-        updateSelectizeInput(inputId = "ResultInterface",choices = ifl ,selected = ifl[DefaultInterface] , label = "Element result Interface",)
-        updateSelectizeInput(inputId = "ResultType",choices = ERTL, selected = "Delamination state")
-      }
-      
-      # print("SimResults getrigert")
-    })
+    # observeEvent(SimResults$triggers$plot, {
+    #   ifl <- c("SMC cell positions",SimResults$InterfaceList)
+    #   
+    #   NRTL <- SimResults$NodeResultTypeList
+    #   ERTL <- c("Delamination state", SimResults$EtableResultTypeList)
+    #   
+    #   
+    #   
+    #   if (PlotType == "Node") {
+    #     updateSelectizeInput(inputId = "ResultInterface",choices = ifl ,selected = ifl[DefaultInterface])
+    #     updateSelectizeInput(inputId = "ResultType",choices = NRTL, selected = "SxminSy")
+    #   }
+    #   
+    #   if (PlotType == "Element") {
+    #     updateSelectizeInput(inputId = "ResultInterface",choices = ifl ,selected = ifl[DefaultInterface] , label = "Element result Interface",)
+    #     updateSelectizeInput(inputId = "ResultType",choices = ERTL, selected = "Delamination state")
+    #   }
+    #   
+    #   # print("SimResults getrigert")
+    # })
     
     ReactivePlotVariables <- reactive({
       #print(SimResults)
@@ -101,7 +103,7 @@ server <- function(id,ConfigVariables, PlotResultVariables, SimResults, DefaultI
       
       #PlotResultVariables$
       #################################################################################################
-      PlCo <<- PlotControlVariables
+      #PlCo <<- PlotControlVariables
       # #################################################################################################
       # ConfigVariables<-Co
       # PlotControlVariables<-PlCo

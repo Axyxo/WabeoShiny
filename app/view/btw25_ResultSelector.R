@@ -14,7 +14,7 @@ box::use(
   # app/logic/utils[make_directory_text_input
   #                 ,makeCard,make_numeric_input_fluent
   #                 ,make_PrimaryButton_fluent,make_dropdown_fluent,make_numeric_input],
-  app/logic/AnsysFunctions/getResultsFromDirectory[getResultsFromDirectory],
+  app/logic/getbtw25Results[getbtw25Results],
   # app/logic/sort_points[sort_points],
   # app/view/Plotcontrol,
   # app/view/Plot_NodeResult_Contour,
@@ -160,7 +160,7 @@ server <- function(id,ConfigVariables, PlotResultVariables,SimResults) {
     
     observeEvent(input$LoadResultdirectory, {
       
-      Allresults <- getResultsFromDirectory(ConfigVariables)
+      Allresults <- getbtw25Results(ConfigVariables)
       
       InterfaceList <- ConfigVariables$InterfaceNames
       Nodelist <- Allresults[[1]]$Noderesult
