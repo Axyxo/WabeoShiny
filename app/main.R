@@ -27,7 +27,7 @@ box::use(
   #app/view/layout/navigation,
   app/view/layout/footer,
   app/view/layout/header,
-  app/logic/variablesManager[btw25daten],
+  app/logic/variablesManager[btw25daten,DataLoader],
   
   #app/view/interactivecellplot,
   #app/view/namesettings,
@@ -165,7 +165,9 @@ server <- function(id) {
     
     #namesettings$server("mainnames", ConfigVariables)
     
-    btw25daten <- btw25daten$new()
+    #btw25daten <- btw25daten$new("sdf")
+    
+    Bayerndata_loader <<- DataLoader$new("app/static/Bayern.RData")$data
     
     #SimResults<-SimResults$new()
     

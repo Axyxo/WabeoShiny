@@ -33,6 +33,8 @@ ui <- function(id) {
                               )
                  ,selected = "Bayern")
     
+    ,verbatimTextOutput(ns("loadedoutput"))
+    
 
     
   )}
@@ -43,6 +45,15 @@ server <- function(id,btw25daten) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
+    output$loadedoutput <- renderText({
+      input$LoadResultdirectory
+      req(SimResults)
+      #SimResults$Node_Files_SMC
+      print(paste(dim(SimResults$all[[1]]$Noderesult)[3], " Results loaded"))
+      
+      return(paste(dim(SimResults$all[[1]]$Noderesult)[3], " Results loaded"))
+    })
+    
     ################################################
     # SimResults<-Si
     # ConfigVariables<-Co
