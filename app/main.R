@@ -27,7 +27,7 @@ box::use(
   #app/view/layout/navigation,
   app/view/layout/footer,
   app/view/layout/header,
-  app/logic/variablesManager[ConfigVariables,PlotResultVariables],
+  app/logic/variablesManager[btw25daten],
   
   #app/view/interactivecellplot,
   #app/view/namesettings,
@@ -165,7 +165,7 @@ server <- function(id) {
     
     #namesettings$server("mainnames", ConfigVariables)
     
-    ConfigVariables <- ConfigVariables$new()
+    btw25daten <- btw25daten$new()
     
     #SimResults<-SimResults$new()
     
@@ -176,7 +176,7 @@ server <- function(id) {
     
     #AI_Creator_bslib$server("AI_Creator_bslib",ConfigVariables)
     
-    btw25_Viewer$server("btw25_Viewer",ConfigVariables)
+    btw25_Viewer$server("btw25_Viewer",btw25daten)
     
     
   })

@@ -4,20 +4,23 @@ box::use(
 )
 
 #' @export
-btw25daten <- R6::R6Class(classname = "PlotControlVariables",
+btw25daten <- R6::R6Class(classname = "btw25daten",
   public = list(
     triggers = reactiveValues(plot = 0),
     trigger_plot = function() {
       self$triggers$plot <- self$triggers$plot + 1
     },
-    directory <- "C://WABEO//btw25//downloads//"
-    load(file = paste0(directory,"/","btw25daten",".RData" ))
-    AutoColor =  load,
     
-    set_vars = function(AutoColor,
+    #Directory <- "app//static//",
 
-    ) {
-      self$AutoColor <- AutoColor
+    
+    Bayern =  load("app/static/Bayern.RData"),
+    
+    
+    
+    set_vars = function(Bayern
+                        ) {
+      self$Bayern <- Bayern
     }
   )
   )

@@ -23,8 +23,8 @@ box::use(
   app/view/Plotcontrol,
   app/view/btw25_ResultSelector,
   #app/view/Plot_NodeResult_Contour,
-  app/logic/variablesManager[PlotControlVariables,PlotResultVariables],
-  app/logic/simdataManager[SimResults]
+  app/logic/variablesManager[btw25daten],
+  #app/logic/simdataManager[SimResults]
 )
 
 
@@ -69,15 +69,15 @@ ui <- function(id) {
 # ConfigVariables
 # ConfigVariables,ConfigVariables,SimResults
 #' @export
-server <- function(id, ConfigVariables) {
+server <- function(id, btw25daten) {
   
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
-    SimResults <- SimResults$new()
-    PlotResultVariables <- PlotResultVariables$new()
+    #btw25daten <- btw25daten$new()
+    #PlotResultVariables <- PlotResultVariables$new()
     
-    btw25_ResultSelector$server("ResultSelector",ConfigVariables,PlotResultVariables,SimResults)
+    btw25_ResultSelector$server("ResultSelector",btw25daten)
     
     #Plot_NodeResult_Contour$server("Elementresultplot", ConfigVariables,PlotResultVariables,SimResults,3,"Element")
     #Plot_NodeResult_Contour$server("Noderesultplot", ConfigVariables,PlotResultVariables,SimResults,1,"Node")
@@ -86,9 +86,9 @@ server <- function(id, ConfigVariables) {
 
     
     # ##########################################
-    Co <<- ConfigVariables
-    Si <<- SimResults
-    PlRe <<- PlotResultVariables
+    ##Co <<- ConfigVariables
+    #Si <<- SimResults
+    #PlRe <<- PlotResultVariables
     #PlCo <<- PlotControlVariables
     ###########################################
     
