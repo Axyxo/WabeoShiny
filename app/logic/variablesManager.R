@@ -7,20 +7,16 @@ box::use(
 btw25daten <- R6::R6Class(classname = "btw25daten",
   public = list(
     
-    # triggers = reactiveValues(plot = 0),
-    # trigger_plot = function() {
-    #   self$triggers$plot <- self$triggers$plot + 1
-    # },
-
-
+    triggers = reactiveValues(plot = 0),
+    trigger_plot = function() {
+      self$triggers$plot <- self$triggers$plot + 1
+    },
     
-    Bayern =  load("app/static/Bayern.RData"),
+    data =  NULL,
     
-    
-    
-    set_vars = function(Bayern
+    set_vars = function(data
                         ) {
-      self$Bayern <- Bayern
+      self$data <- data
     }
   )
   )

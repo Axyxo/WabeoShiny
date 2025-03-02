@@ -29,7 +29,7 @@ ui <- function(id) {
   sidebar(
     selectInput(inputId = ns("btw25_region"), label = "Region"
                  ,choices = c("Bayern"
-                              #,""
+                              ,"Niedersachsen"
                               )
                  ,selected = "Bayern")
     
@@ -44,14 +44,29 @@ server <- function(id,btw25daten) {
   
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
+    
+    observeEvent(input$btw25_region, {
+      
+      filepath<-paste0("app/static/",input$btw25_region ,".RData")
+      print(filepath)
+      
+      load(filepath)
+      
+      btw25daten$set_vars(data = CSV_Data
+      )
+      
+      btw25daten$trigger_plot()
+      
+    })
 
     output$loadedoutput <- renderText({
-      input$LoadResultdirectory
-      req(SimResults)
+      input$btw25_region
+      req(btw25daten)
       #SimResults$Node_Files_SMC
-      print(paste(dim(SimResults$all[[1]]$Noderesult)[3], " Results loaded"))
+      aaa<<-btw25daten
+      print(paste(dim(btw25daten$data$data), " Results loaded"))
       
-      return(paste(dim(SimResults$all[[1]]$Noderesult)[3], " Results loaded"))
+      return(paste(dim(btw25daten$data$data), " Results loaded"))
     })
     
     ################################################

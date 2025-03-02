@@ -167,7 +167,7 @@ server <- function(id) {
     
     #btw25daten <- btw25daten$new("sdf")
     
-    Bayerndata_loader <<- DataLoader$new("app/static/Bayern.RData")$data
+    #Bayerndata_loader <<- DataLoader$new("app/static/Bayern.RData")$data
     
     #SimResults<-SimResults$new()
     

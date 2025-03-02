@@ -76,10 +76,10 @@ server <- function(id, btw25daten) {
     
     btw25daten <- btw25daten$new()
     
-    btw<<-btw25daten
-    print("btw")
-    print(btw$Bayern)
-    #PlotResultVariables <- PlotResultVariables$new()
+    # btw<<-btw25daten
+    # print("btw")
+    # print(btw$Bayern)
+    # #PlotResultVariables <- PlotResultVariables$new()
     
     btw25_ResultSelector$server("ResultSelector",btw25daten)
     
