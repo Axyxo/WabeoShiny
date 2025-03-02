@@ -4,7 +4,6 @@ box::use(
   #ggplot2[ggplot,geom_ribbon,aes,ggtitle],
   #stats[rnorm],
   bslib[sidebar,layout_columns],
-  stringr[str_split_i],
   # RColorBrewer[brewer.pal],
   # grDevices[colorRampPalette],
   # reshape2[acast,melt]

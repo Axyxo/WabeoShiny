@@ -2,7 +2,7 @@ box::use(
   shiny[bootstrapPage, div, moduleServer, NS, renderUI, tags, uiOutput,h1,h4
         ,reactiveValues,observe,observeEvent,textOutput,a,actionButton,icon],
   #shiny.semantic[grid, grid_template, semanticPage,tabset,menu,menu_item,menu_divider,dropdown_menu,menu_header,icon],
-  waiter[use_waiter,waiter_hide],
+  #waiter[use_waiter,waiter_hide],
   bslib[bs_theme,page_fillable,page_fluid,page_fixed,font_google,page_navbar,nav_panel,navset_pill_list,
         card,card_header,layout_sidebar,sidebar,nav_menu,nav_item,navset_card_pill,nav_spacer,bs_theme_preview,input_dark_mode],
   bsicons[bs_icon],
@@ -106,7 +106,7 @@ ui <- function(id) {
   #page_fixed(
   page_fillable(
     #loading_screen("StressChip.de"),
-    # use_waiter(),
+    #use_waiter(),
     title = "wabeo.de",
     theme = bslib_Wabeo,
     padding = 0,
@@ -159,7 +159,7 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
     #browser()
     Sys.sleep(0.1)
-    waiter_hide()
+    #waiter_hide()
     
     print(getwd())
     

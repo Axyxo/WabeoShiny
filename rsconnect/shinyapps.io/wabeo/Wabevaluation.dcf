@@ -1,0 +1,10 @@
+name: Wabevaluation
+title:
+username: wabeo
+account: wabeo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14137788
+bundleId:
+url: https://wabeo.shinyapps.io/Wabevaluation/
+version: 1
