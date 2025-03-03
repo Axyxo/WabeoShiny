@@ -1,7 +1,7 @@
 # btw25_ResultSelector.R
 box::use(
   shiny[moduleServer, observeEvent, NS, reactive,actionButton,verbatimTextOutput
-        ,selectizeInput,icon,renderText,req,updateSelectizeInput,selectInput],
+        ,selectizeInput,icon,renderText,req,updateSelectizeInput,selectInput,updateSelectInput ],
   #ggplot2[ggplot,geom_ribbon,aes,ggtitle],
   #stats[rnorm],
   bslib[sidebar,layout_columns],
@@ -33,6 +33,11 @@ ui <- function(id) {
                               )
                  ,selected = "Bayern")
     
+    ,selectInput(inputId = ns("BTWcolnames"), label = "welche spalte?"
+                ,choices = c("nichts geladen")
+                ,selected = "nichts geladen")
+    
+    
     ,verbatimTextOutput(ns("loadedoutput"))
     
 
@@ -52,8 +57,12 @@ server <- function(id,btw25daten) {
       
       load(filepath)
       
-      btw25daten$set_vars(data = CSV_Data
-      )
+      btw25daten$set_vars(data = CSV_Data)
+      
+      updateSelectInput(inputId = "BTWcolnames"
+                        ,choices = colnames(CSV_Data$data)
+                        )
+      
       
       btw25daten$trigger_plot()
       
@@ -63,7 +72,7 @@ server <- function(id,btw25daten) {
       input$btw25_region
       req(btw25daten)
       #SimResults$Node_Files_SMC
-      aaa<<-btw25daten
+    #  aaa<<-btw25daten
       print(paste(dim(btw25daten$data$data), " Results loaded"))
       
       return(paste(dim(btw25daten$data$data), " Results loaded"))

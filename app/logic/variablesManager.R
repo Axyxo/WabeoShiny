@@ -13,10 +13,13 @@ btw25daten <- R6::R6Class(classname = "btw25daten",
     },
     
     data =  NULL,
+    BTWcolnames = NULL,
     
-    set_vars = function(data
+    set_vars = function(data,BTWcolnames
                         ) {
       self$data <- data
+      
+      self$BTWcolnames <- colnames(data$data)
     }
   )
   )
@@ -50,3 +53,60 @@ DataLoader <- R6::R6Class("DataLoader",
                           )
 )
 
+#' @export
+PlotControlVariables <- R6::R6Class(
+  classname = "PlotControlVariables",
+  public = list(
+    triggers = reactiveValues(plot = 0),
+    trigger_plot = function() {
+      self$triggers$plot <- self$triggers$plot + 1
+    },
+    
+    AutoColor= NULL,
+    MAX= NULL,
+    MIN= NULL,
+    ncolor= NULL,
+    TitleFontSize= NULL,
+    AxisFontSize= NULL,
+    # Imagewidth= NULL,
+    # Imagehight= NULL,
+    DecimalPlaces= NULL,
+    linesmoothing= NULL,
+    showlabels= NULL,
+    showlines= NULL,
+    ColorPalette= NULL,
+    
+    set_vars = function(AutoColor,
+                        MAX,
+                        MIN,
+                        ncolor,
+                        TitleFontSize,
+                        AxisFontSize,
+                        # Imagewidth,
+                        # Imagehight,
+                        DecimalPlaces,
+                        linesmoothing,
+                        showlabels,
+                        showlines,
+                        ColorPalette
+                        
+    ) {
+      
+      
+      self$AutoColor <- AutoColor
+      self$MAX <- MAX
+      self$MIN <- MIN
+      self$ncolor <- ncolor
+      self$TitleFontSize <- TitleFontSize
+      self$AxisFontSize <- AxisFontSize
+      # self$Imagewidth <- Imagewidth
+      # self$Imagehight <- Imagehight
+      self$DecimalPlaces <- DecimalPlaces
+      self$linesmoothing <- linesmoothing
+      self$showlabels <- showlabels
+      self$showlines <- showlines
+      self$ColorPalette <- ColorPalette
+      
+    }
+  )
+)

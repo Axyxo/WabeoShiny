@@ -246,3 +246,17 @@ makeCard <- function(title,  content, headercontent = NULL, min_height = NULL) {
     )
   )
 }
+
+#' @export
+makeCard2 <- function(title, content, headercontent = NULL, min_height = NULL, small = FALSE, center = FALSE) {
+  div(
+    class = paste0(ifelse(center, "d-flex justify-content-center ", ""), "p-2"),
+    card(
+      full_screen = FALSE,
+      fill = TRUE,
+      style = if (small) "width: 800px; height: auto;" else "width: 100%;",
+      card_header(title, headercontent, class = "d-flex justify-content-between"),
+      card_body(min_height = min_height, content)
+    )
+  )
+}

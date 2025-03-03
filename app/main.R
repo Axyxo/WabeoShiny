@@ -16,6 +16,7 @@ box::use(
   #app/view/secondPage,
   #app/view/conductivityMAIN,
   app/view/btw25_Viewer,
+  app/view/app_news,
   #app/view/AI_Creator_bslib,
   app/logic/utils[loading_screen,make_directory_text_input
                   ,makeCard
@@ -132,7 +133,9 @@ ui <- function(id) {
       #nav_panel(title = "AI Creator", AI_Creator_bslib$ui(ns("AI_Creator_bslib")),icon=bs_icon("Calculator", size = "1em", class = "text-primary")),
       nav_panel(title = "btw25 Viewer", btw25_Viewer$ui(ns("btw25_Viewer")),icon=bs_icon("eye", size = "1em", class = "text-primary"),fluid = TRUE),
       nav_spacer(),
-      nav_menu(
+      nav_panel(title = "App News", app_news$ui(ns("app_news")),icon=bs_icon("Newspaper", size = "1em", class = "text-primary"),fluid = TRUE),
+      nav_spacer(),
+      nav_menu(icon=bs_icon("link", size = "1em", class = "text-primary"),
         title = "Links",
         nav_item(a(href="http://wabeo.de" ,target="_blank" ,rel="noopener noreferrer", "wabeo.de")),
         nav_item(a(href="http://schindler-saefkow.de" ,target="_blank" ,rel="noopener noreferrer", "schindler-saefkow.de")),
@@ -179,6 +182,7 @@ server <- function(id) {
     #AI_Creator_bslib$server("AI_Creator_bslib",ConfigVariables)
     
     btw25_Viewer$server("btw25_Viewer",btw25daten)
+    #btw25_Viewer$server("btw25_Viewer",btw25daten)
     
     
   })
