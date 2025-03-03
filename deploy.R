@@ -15,8 +15,8 @@ fix_encoding <- function(file) {
 fix_encoding("renv.lock")
 
 
-
-rsconnect::deployApp("/ICORE5-12500/RstudioUserData/WabeoShiny"
+rsconnect::deployApp("C:/Rprojekts/WabeoShiny"
+#rsconnect::deployApp("/ICORE5-12500/RstudioUserData/WabeoShiny"
                      ,appName = "Wabevaluation")
 y
 #rsconnect::configureApp("MCC2", size="small")

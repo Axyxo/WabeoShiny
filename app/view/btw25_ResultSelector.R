@@ -1,6 +1,7 @@
 # btw25_ResultSelector.R
 box::use(
-  shiny[moduleServer, observeEvent, NS, reactive,actionButton,verbatimTextOutput,selectizeInput,icon,renderText,req,updateSelectizeInput,selectInput],
+  shiny[moduleServer, observeEvent, NS, reactive,actionButton,verbatimTextOutput
+        ,selectizeInput,icon,renderText,req,updateSelectizeInput,selectInput],
   #ggplot2[ggplot,geom_ribbon,aes,ggtitle],
   #stats[rnorm],
   bslib[sidebar,layout_columns],
@@ -13,7 +14,7 @@ box::use(
   # app/logic/utils[make_directory_text_input
   #                 ,makeCard,make_numeric_input_fluent
   #                 ,make_PrimaryButton_fluent,make_dropdown_fluent,make_numeric_input],
-  app/logic/getbtw25Results[getbtw25Results],
+  #app/logic/getbtw25Results[getbtw25Results],
   # app/logic/sort_points[sort_points],
   # app/view/Plotcontrol,
   # app/view/Plot_NodeResult_Contour,

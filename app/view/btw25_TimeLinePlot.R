@@ -18,8 +18,8 @@ box::use(
                   ,make_numeric_input],
   app/view/Plotcontrol,
   app/view/empty_plot[empty_plot],
-  app/logic/sort_points[sort_points],
-  app/logic/variablesManager[PlotControlVariables,PlotResultVariables],
+  #app/logic/sort_points[sort_points],
+  app/logic/variablesManager[btw25daten],
 )
 
 #' @export

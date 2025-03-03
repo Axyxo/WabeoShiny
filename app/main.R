@@ -127,10 +127,10 @@ ui <- function(id) {
       # fluid=FALSE),
       title = h4("WABEO Shiny App 0.01"),
       #nav_spacer(),
-      nav_panel(title = "WABEO Home", root$ui("root"),icon=bs_icon("house", size = "1em", class = "text-primary")),
+      nav_panel(title = "Home", root$ui("root"),icon=bs_icon("house", size = "1em", class = "text-primary")),
       #nav_panel(title = "WABEO Auswertung", namesettings$ui(ns("mainnames")), icon=bs_icon("gear", size = "1em", class = "text-primary")),
       #nav_panel(title = "AI Creator", AI_Creator_bslib$ui(ns("AI_Creator_bslib")),icon=bs_icon("Calculator", size = "1em", class = "text-primary")),
-      nav_panel(title = "WABEO Viewer", btw25_Viewer$ui(ns("btw25_Viewer")),icon=bs_icon("eye", size = "1em", class = "text-primary"),fluid = TRUE),
+      nav_panel(title = "btw25 Viewer", btw25_Viewer$ui(ns("btw25_Viewer")),icon=bs_icon("eye", size = "1em", class = "text-primary"),fluid = TRUE),
       nav_spacer(),
       nav_menu(
         title = "Links",
