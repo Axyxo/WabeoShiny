@@ -181,7 +181,7 @@ server <- function(id) {
     
     #AI_Creator_bslib$server("AI_Creator_bslib",ConfigVariables)
     
-    btw25_Viewer$server("btw25_Viewer",btw25daten)
+    btw25_Viewer$server("btw25_Viewer")
     #btw25_Viewer$server("btw25_Viewer",btw25daten)
     
     

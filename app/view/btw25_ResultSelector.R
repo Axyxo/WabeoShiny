@@ -33,9 +33,7 @@ ui <- function(id) {
                               )
                  ,selected = "Bayern")
     
-    ,selectInput(inputId = ns("BTWcolnames"), label = "welche spalte?"
-                ,choices = c("nichts geladen")
-                ,selected = "nichts geladen")
+
     
     
     ,verbatimTextOutput(ns("loadedoutput"))
@@ -45,7 +43,7 @@ ui <- function(id) {
   )}
 
 #' @export
-server <- function(id,btw25daten) {
+server <- function(id,btw25daten_instance) {
   
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -53,29 +51,32 @@ server <- function(id,btw25daten) {
     observeEvent(input$btw25_region, {
       
       filepath<-paste0("app/static/",input$btw25_region ,".RData")
-      print(filepath)
+      #print(filepath)
       
       load(filepath)
       
-      btw25daten$set_vars(data = CSV_Data)
+      btw25daten_instance$trigger_plot()
+      btw25daten_instance$set_vars(data = CSV_Data)
       
-      updateSelectInput(inputId = "BTWcolnames"
-                        ,choices = colnames(CSV_Data$data)
-                        )
-      
-      
-      btw25daten$trigger_plot()
-      
-    })
-
+      })
+    
+    # observeEvent(input$BTWcolnames, {
+    #   
+    #   btw25daten$set_vars(BTWcolname = input$BTWcolname)
+    #   
+    # })
+    
     output$loadedoutput <- renderText({
       input$btw25_region
-      req(btw25daten)
+      req(btw25daten_instance$data)
+      req(btw25daten_instance$triggers$plot)
+      
       #SimResults$Node_Files_SMC
     #  aaa<<-btw25daten
-      print(paste(dim(btw25daten$data$data), " Results loaded"))
+      #print(paste(dim(btw25daten$data$data), " Results loaded"))
+      #print(paste(dim(btw25daten$BTWcolnames), " Results loaded"))
       
-      return(paste(dim(btw25daten$data$data), " Results loaded"))
+      return(paste(dim(btw25daten_instance$data$data), " Results loaded"))
     })
     
     ################################################

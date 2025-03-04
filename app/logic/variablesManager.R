@@ -13,13 +13,14 @@ btw25daten <- R6::R6Class(classname = "btw25daten",
     },
     
     data =  NULL,
-    BTWcolnames = NULL,
+    #BTWcolname = NULL,
+    #BTWcolnameschoose = NULL,
     
-    set_vars = function(data,BTWcolnames
+    set_vars = function(data#,BTWcolname
                         ) {
       self$data <- data
+      #self$BTWcolname <- colnames(data$data)
       
-      self$BTWcolnames <- colnames(data$data)
     }
   )
   )

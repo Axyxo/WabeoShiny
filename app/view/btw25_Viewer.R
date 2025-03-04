@@ -48,7 +48,7 @@ ui <- function(id) {
         
         sidebar = btw25_ResultSelector$ui(ns("ResultSelector"))
         ,layout_column_wrap(width = 1/1
-                            ,btw25_TimeLinePlot$ui(ns("TimeLinePlot"),"plotly")
+                            ,btw25_TimeLinePlot$ui(ns("TimeLinePlot"))#,"plotly")
                             #,Plot_NodeResult_Contour$ui(ns("Noderesultplot"),"plotly")
                             #,Plot_NodeResult_Contour$ui(ns("Noderesultplot2"),"plotly")
                             #,Plot_NodeResult_Contour$ui(ns("Noderesultplot3"),"plotly")
@@ -69,21 +69,20 @@ ui <- function(id) {
 # ConfigVariables
 # ConfigVariables,ConfigVariables,SimResults
 #' @export
-server <- function(id, btw25daten) {
+server <- function(id) {
   
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
-    btw25daten <- btw25daten$new()
+    btw25daten_instance <- btw25daten$new()
     
     # btw<<-btw25daten
     # print("btw")
     # print(btw$Bayern)
     # #PlotResultVariables <- PlotResultVariables$new()
     
-    btw25_ResultSelector$server("ResultSelector",btw25daten)
-    
-    btw25_TimeLinePlot$server("TimeLinePlot", btw25daten)
+    btw25_ResultSelector$server("ResultSelector",btw25daten_instance)
+    btw25_TimeLinePlot$server("TimeLinePlot", btw25daten_instance)
     
     #Plot_NodeResult_Contour$server("Noderesultplot", ConfigVariables,PlotResultVariables,SimResults,1,"Node")
     #Plot_NodeResult_Contour$server("Noderesultplot2", ConfigVariables,PlotResultVariables,SimResults,2,"Node")
