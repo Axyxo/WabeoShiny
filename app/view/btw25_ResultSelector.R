@@ -53,10 +53,11 @@ server <- function(id,btw25daten_instance) {
       filepath<-paste0("app/static/",input$btw25_region ,".RData")
       #print(filepath)
       
-      load(filepath)
+      env <- new.env()  # Erstellt eine eigene Umgebung für das Laden
+      load(filepath, envir = env)  # Lädt CSV_Data in diese Umgebung
       
-      btw25daten_instance$trigger_plot()
-      btw25daten_instance$set_vars(data = CSV_Data)
+      btw25daten_instance$set_vars(data = env$CSV_Data)  # Zugriff auf CSV_Data in env
+      btw25daten_instance$trigger_plot()  # Aktualisierung auslösen
       
       })
     
@@ -67,6 +68,7 @@ server <- function(id,btw25daten_instance) {
     # })
     
     output$loadedoutput <- renderText({
+      
       input$btw25_region
       req(btw25daten_instance$data)
       req(btw25daten_instance$triggers$plot)

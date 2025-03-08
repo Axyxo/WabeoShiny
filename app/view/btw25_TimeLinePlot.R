@@ -48,7 +48,7 @@ server <- function(id,btw25daten_instance) {
   
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-
+    
     PlotControlVariables <- PlotControlVariables$new()
     Plotcontrol$server("btw25plotcontrol",PlotControlVariables)
     
@@ -65,35 +65,40 @@ server <- function(id,btw25daten_instance) {
     
     #req(btw25daten_instance$data)
     #req(btw25daten_instance$triggers$plot)
-    req(btw25daten_instance$data)
-    req(btw25daten_instance$triggers$plot)
     
-    updateSelectInput(inputId = ns("BTWcolname")
-                # ,label = "Waehle die Spalte mit den Wahlkreisen."
-                 ,choices = colnames(btw25daten_instance$data$data)
-                 #,selected = "nichts geladen11"
-                )
+    observeEvent(btw25daten_instance$triggers$plot, {
+      req(btw25daten_instance$data)
+      #req(btw25daten_instance$triggers$plot)
+      
+      spaltennamen<-colnames(btw25daten_instance$data$data)
+      #print(spaltennamen)
+      updateSelectInput( session = session
+                         ,inputId = "BTWcolname"
+                         # ,label = "Waehle die Spalte mit den Wahlkreisen."
+                         ,choices = spaltennamen
+                         #,selected = "nichts geladen11"
+      )
+      
+      
+    })
+    
     
     output$graph <- renderPlotly({
       
       PlotControlVariables$triggers$plot
       
-
+      req(btw25daten_instance$data)  # Sicherstellen, dass Daten vorhanden sind
+      req(btw25daten_instance$triggers$plot)  # Sicherstellen, dass der Trigger da ist
       
       print(paste(length(btw25daten_instance$data$data), " Results loaded"))
 
-      
-      #SimResults$triggers$plot
-      
-      # if (is.null(btw25daten$data$data) == TRUE) {
-      #   print("no data is loaded")
-      #   return(empty_plot("no data is loaded"))
-      # }
-      return(empty_plot(
-        dim(btw25daten_instance$data$data)
-        ))
-     
+      return(
+        empty_plot(
+          "dim(btw25daten_instance$data$data)"
+        )
+      )
     })
+    
   })
   
 }

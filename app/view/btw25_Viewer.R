@@ -76,25 +76,9 @@ server <- function(id) {
     
     btw25daten_instance <- btw25daten$new()
     
-    # btw<<-btw25daten
-    # print("btw")
-    # print(btw$Bayern)
-    # #PlotResultVariables <- PlotResultVariables$new()
-    
     btw25_ResultSelector$server("ResultSelector",btw25daten_instance)
     btw25_TimeLinePlot$server("TimeLinePlot", btw25daten_instance)
-    
-    #Plot_NodeResult_Contour$server("Noderesultplot", ConfigVariables,PlotResultVariables,SimResults,1,"Node")
-    #Plot_NodeResult_Contour$server("Noderesultplot2", ConfigVariables,PlotResultVariables,SimResults,2,"Node")
-    #Plot_NodeResult_Contour$server("Noderesultplot3", ConfigVariables,PlotResultVariables,SimResults,3,"Node")
 
-    
-    # ##########################################
-    #btw <<- btw25daten$data
-    #Si <<- SimResults
-    #PlRe <<- PlotResultVariables
-    #PlCo <<- PlotControlVariables
-    ###########################################
     
     
   })

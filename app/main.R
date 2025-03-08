@@ -163,7 +163,7 @@ server <- function(id) {
     #browser()
     Sys.sleep(0.1)
     #waiter_hide()
-    
+    print("getwd()")
     print(getwd())
     
     #namesettings$server("mainnames", ConfigVariables)
